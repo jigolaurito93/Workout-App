@@ -8,6 +8,7 @@ const workoutRoutes = require("./routes/workouts");
 // express app
 const app = express();
 
+
 // middleware
 // Let the request body will be passed to the request object
 app.use(express.json());
@@ -18,7 +19,12 @@ app.use((req, res, next) => {
 });
 
 // routes
-app.use("/api/workouts", workoutRoutes);
+app.use("/api/workouts", (req, res, next) => {
+  // Set Content-Type header to indicate that the response will be in JSON format
+  res.setHeader("Content-Type", "application/json");
+  // Call the next middleware or route handler
+  next();
+}, workoutRoutes);
 
 // connect to database
 mongoose
