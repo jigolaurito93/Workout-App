@@ -1,5 +1,4 @@
 const express = require("express");
-const Workout = require("../models/workoutModel");
 
 // Invoke the express router
 const router = express.Router();
